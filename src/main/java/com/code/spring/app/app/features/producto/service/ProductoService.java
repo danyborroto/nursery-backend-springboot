@@ -1,5 +1,6 @@
 package com.code.spring.app.app.features.producto.service;
 
+import com.code.spring.app.app.exception.FormatNotFoundException;
 import com.code.spring.app.app.exception.ProductoNotFounException;
 import com.code.spring.app.app.features.format.dto.FormatResponseDto;
 import com.code.spring.app.app.features.format.entity.Format;
@@ -47,7 +48,7 @@ public class ProductoService {
     public ProductoResponseDto create(ProductoCreateDto productoCreateDto) {
         Format format = formatRepository.findById(productoCreateDto.getFormatId())
                 .orElseThrow(() ->
-                        new RuntimeException("Formato no encontrado con el ID: " + productoCreateDto.getFormatId()));
+                        new FormatNotFoundException(productoCreateDto.getFormatId()));
         Producto producto = new Producto();
         producto.setNombre(productoCreateDto.getNombre());
         producto.setPrecio(productoCreateDto.getPrecio());
@@ -63,7 +64,7 @@ public class ProductoService {
     public ProductoResponseDto update(Integer id, ProductoCreateDto dto) {
         Format format = formatRepository.findById(dto.getFormatId())
                 .orElseThrow(() ->
-                        new RuntimeException("Formato no encontrado con el ID: " + dto.getFormatId()));
+                        new FormatNotFoundException(dto.getFormatId()));
         Producto producto = productoRepository.findById(id)
                 .orElseThrow(()->
                         new ProductoNotFounException(id));

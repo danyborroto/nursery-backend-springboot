@@ -16,6 +16,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNotFound(ProductoNotFounException ex){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+    @ExceptionHandler(FormatNotFoundException.class)
+    public ResponseEntity<String> handleFormatNotFound(FormatNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,String>> handleValidationErrors(MethodArgumentNotValidException ex){

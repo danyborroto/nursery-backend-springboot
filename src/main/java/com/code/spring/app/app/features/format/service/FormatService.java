@@ -1,5 +1,6 @@
 package com.code.spring.app.app.features.format.service;
 
+import com.code.spring.app.app.exception.FormatNotFoundException;
 import com.code.spring.app.app.features.format.dto.FormatCreateDto;
 import com.code.spring.app.app.features.format.dto.FormatResponseDto;
 import com.code.spring.app.app.features.format.entity.Format;
@@ -27,7 +28,7 @@ public class FormatService {
 
     public FormatResponseDto getOne(Integer id) {
         Format format = formatRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Formato no encontrado con ID: " + id));
+                .orElseThrow(() -> new FormatNotFoundException(id));
         return mapToFormatResponseDto(format);
     }
 
@@ -40,7 +41,7 @@ public class FormatService {
 
     public FormatResponseDto update(Integer id, FormatCreateDto dto) {
         Format format = formatRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Formato no encontrado con ID: " + id));
+                .orElseThrow(() -> new FormatNotFoundException(id));
         format.setFormatName(dto.getName());
         return mapToFormatResponseDto(formatRepository.save(format));
     }
@@ -51,7 +52,7 @@ public class FormatService {
                     formatRepository.delete(f);
                     return "Formato con id: " + id + " eliminado correctamente";
                 })
-                .orElseThrow(() -> new RuntimeException("Formato no encontrado con ID: " + id));
+                .orElseThrow(() -> new FormatNotFoundException(id));
     }
 
     private FormatResponseDto mapToFormatResponseDto(Format f) {
