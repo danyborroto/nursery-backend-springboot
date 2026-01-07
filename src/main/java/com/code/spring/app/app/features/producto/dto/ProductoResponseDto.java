@@ -1,52 +1,25 @@
-package com.code.spring.app.app.producto.model;
+package com.code.spring.app.app.features.producto.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import com.code.spring.app.app.features.format.dto.FormatResponseDto;
 
-@Entity
-@Table(name = "productos")
-public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Integer id;
-
-    @Column(name = "product_name")
+public class ProductoResponseDto {
     private String nombre;
-    @Column(name = "product_price")
     private Double precio;
-    @Column(name = "product_description")
     private String description;
-    @Column(name = "product_count")
     private Integer count;
-    @Column(name = "product_height")
     private Double height;
-    @Column(name = "product_height_unit")
     private String heightUnit;
-    @Column(name = "format_id")
-    private Integer formatId;
+    private FormatResponseDto format;
 
-    public Producto() {
-    }
-
-    public Producto(String nombre, Double precio, String description,
-                    Integer count, Double height, String heightUnit, Integer formatId) {
-        this.nombre = nombre;
-        this.precio = precio;
+    public ProductoResponseDto(String nombre, Double precio, String description,
+                               Integer count, Double height, String heightUnit, FormatResponseDto format){
+        this.nombre=nombre;
+        this.precio=precio;
         this.description = description;
         this.count = count;
         this.height = height;
         this.heightUnit = heightUnit;
-        this.formatId = formatId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.format = format;
     }
 
     public String getNombre() {
@@ -98,10 +71,17 @@ public class Producto {
     }
 
     public Integer getFormatId() {
-        return formatId;
+        return format.getFormatId();
     }
 
-    public void setFormatId(Integer formatId) {
+    /* public void setFormatId(Integer formatId) {
         this.formatId = formatId;
+    } */
+
+    public void setFormat(FormatResponseDto format){
+        this.format = format;
+    }
+    public FormatResponseDto getFormat(){
+        return this.format;
     }
 }

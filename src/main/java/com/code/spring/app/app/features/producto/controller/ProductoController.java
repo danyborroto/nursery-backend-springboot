@@ -1,11 +1,9 @@
-package com.code.spring.app.app.producto.controller;
+package com.code.spring.app.app.features.producto.controller;
 
-import com.code.spring.app.app.exception.ProductoNotFounException;
-import com.code.spring.app.app.producto.dto.ProductoCreateDto;
-import com.code.spring.app.app.producto.dto.ProductoResponseDto;
-import com.code.spring.app.app.producto.model.Producto;
-import com.code.spring.app.app.producto.repository.ProductoRepository;
-import com.code.spring.app.app.producto.service.ProductoService;
+import com.code.spring.app.app.features.producto.dto.ProductoCreateDto;
+import com.code.spring.app.app.features.producto.dto.ProductoResponseDto;
+import com.code.spring.app.app.features.producto.entity.Producto;
+import com.code.spring.app.app.features.producto.service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,17 +25,17 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public Producto getOne(@PathVariable Integer id) {
+    public ProductoResponseDto getOne(@PathVariable Integer id) {
         return productoService.getOne(id);
     }
 
     @PostMapping
-    public Producto create(@Valid @RequestBody ProductoCreateDto productoCreateDto) {
+    public ProductoResponseDto create(@Valid @RequestBody ProductoCreateDto productoCreateDto) {
         return productoService.create(productoCreateDto);
     }
 
     @PutMapping("/{id}")
-    public Producto update(@PathVariable Integer id, @RequestBody Producto newProducto) {
+    public ProductoResponseDto update(@PathVariable Integer id, @RequestBody ProductoCreateDto newProducto) {
         return productoService.update(id, newProducto);
     }
 

@@ -1,24 +1,25 @@
-package com.code.spring.app.app.producto.dto;
+package com.code.spring.app.app.features.producto.dto;
 
-public class ProductoResponseDto {
+import jakarta.validation.constraints.*;
+
+public class ProductoCreateDto {
+    @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
-    private Double precio;
-    private String description;
-    private Integer count;
-    private Double height;
-    private String heightUnit;
-    private Integer formatId;
 
-    public ProductoResponseDto(String nombre, Double precio, String description,
-                               Integer count, Double height, String heightUnit, Integer formatId){
-        this.nombre=nombre;
-        this.precio=precio;
-        this.description = description;
-        this.count = count;
-        this.height = height;
-        this.heightUnit = heightUnit;
-        this.formatId = formatId;
-    }
+    @PositiveOrZero(message = "El precio no puede ser menor que 0")
+    private Double precio;
+
+    @NotBlank(message = "La descripcion no puede estar vacia")
+    private String description;
+    @PositiveOrZero(message = "La cantidad no puede ser menor que 0")
+    private Integer count;
+    @Min(value=0, message = "La altura no puede ser menor que 0")
+    private Double height;
+    @NotBlank(message = "La unidad de altura no puede ser vacia")
+    private String heightUnit;
+    @Positive(message = "El id de formato no puede ser menor que 0")
+    @NotNull(message = "El id de formato no puede ser nulo")
+    private Integer formatId;
 
     public String getNombre() {
         return nombre;
