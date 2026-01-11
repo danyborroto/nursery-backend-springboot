@@ -18,7 +18,7 @@ public class ServicioController {
     }
 
     @GetMapping
-    public List<ServiceResponseDto> create(){
+    public List<ServiceResponseDto> getAll(){
         return servicioService.getAll();
     }
 
