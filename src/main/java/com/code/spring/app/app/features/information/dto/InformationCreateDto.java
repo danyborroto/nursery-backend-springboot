@@ -29,71 +29,59 @@ public class InformationCreateDto {
     @Email(message = "El email no tiene un formato valido")
     private String email;
 
-    public @NotBlank(message = "El nombre del nursery es obligatorio") String getNurseryName() {
+    public String getNurseryName() {
         return nurseryName;
     }
 
-    public void setNurseryName(@NotBlank(message = "El nombre del nursery es obligatorio") String nurseryName) {
+    public void setNurseryName(String nurseryName) {
         this.nurseryName = nurseryName;
     }
 
-    public @NotBlank(message = "La descripción es obligatorio") String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(@NotBlank(message = "La descripción es obligatorio") String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public @NotBlank(message = "La historia es obligatorio") String getHistory() {
+    public String getHistory() {
         return history;
     }
 
-    public void setHistory(@NotBlank(message = "La historia es obligatorio") String history) {
+    public void setHistory(String history) {
         this.history = history;
     }
 
-    public @NotBlank(message = "La dirección es obligatorio") String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(@NotBlank(message = "La dirección es obligatorio") String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public @NotBlank(message = "El telefono principal es obligatorio") @Pattern(
-            regexp = "^[0-9]{9,15}$",
-            message = "El teléfono debe contener entre 9 y 15 dígitos"
-    ) String getPrimaryPhone() {
+    public String getPrimaryPhone() {
         return primaryPhone;
     }
 
-    public void setPrimaryPhone(@NotBlank(message = "El telefono principal es obligatorio") @Pattern(
-            regexp = "^[0-9]{9,15}$",
-            message = "El teléfono debe contener entre 9 y 15 dígitos"
-    ) String primaryPhone) {
+    public void setPrimaryPhone(String primaryPhone) {
         this.primaryPhone = primaryPhone;
     }
 
-    public @NotBlank(message = "El telefono es obligatorio") @Pattern(
-            regexp = "^[0-9]{9,15}$",
-            message = "El teléfono debe contener entre 9 y 15 dígitos"
-    ) String getSecondaryPhone() {
+    public String getSecondaryPhone() {
         return secondaryPhone;
     }
 
-    public void setSecondaryPhone(@NotBlank(message = "El telefono es obligatorio") @Pattern(
-            regexp = "^[0-9]{9,15}$",
-            message = "El teléfono debe contener entre 9 y 15 dígitos"
-    ) String secondaryPhone) {
+    public void setSecondaryPhone(String secondaryPhone) {
         this.secondaryPhone = secondaryPhone;
     }
 
-    public @NotBlank(message = "El email es obligatorio") @Email(message = "El email no tiene un formato valido") String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "El email es obligatorio") @Email(message = "El email no tiene un formato valido") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }
