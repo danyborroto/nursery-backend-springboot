@@ -24,28 +24,15 @@ public class InformationService {
 
     public InformationResponseDto create(InformationCreateDto dto){
         Information info = new Information();
-        info.setNurseryName(dto.getNurseryName());
-        info.setDescription(dto.getDescription());
-        info.setHistory(dto.getHistory());
-        info.setAddress(dto.getAddress());
-        info.setPrimaryPhone(dto.getPrimaryPhone());
-        info.setSecondaryPhone(dto.getSecondaryPhone());
-        info.setEmail(dto.getEmail());
-        Information saved = informationRepository.save(info);
+        Information saved = informationRepository.save(mapDtoToInformation(info,dto));
         return mapToInfoResponseDTo(saved);
     }
 
     public InformationResponseDto update(Integer id, InformationCreateDto dto){
         Information info = informationRepository.findById(id)
                 .orElseThrow(()->new InformationNotFoundException(id));
-        info.setNurseryName(dto.getNurseryName());
-        info.setDescription(dto.getDescription());
-        info.setHistory(dto.getHistory());
-        info.setAddress(dto.getAddress());
-        info.setPrimaryPhone(dto.getPrimaryPhone());
-        info.setSecondaryPhone(dto.getSecondaryPhone());
-        info.setEmail(dto.getEmail());
-        return mapToInfoResponseDTo(informationRepository.save(info));
+
+        return mapToInfoResponseDTo(informationRepository.save(mapDtoToInformation(info,dto)));
     }
 
     public String delete(Integer id){
@@ -67,6 +54,18 @@ public class InformationService {
                 info.getSecondaryPhone(),
                 info.getEmail()
         );
+    }
+
+    private Information mapDtoToInformation(Information info, InformationCreateDto dto){
+        Information information = info;
+        information.setNurseryName(dto.getNurseryName());
+        information.setDescription(dto.getDescription());
+        information.setHistory(dto.getHistory());
+        information.setAddress(dto.getAddress());
+        information.setPrimaryPhone(dto.getPrimaryPhone());
+        information.setSecondaryPhone(dto.getSecondaryPhone());
+        information.setEmail(dto.getEmail());
+        return information;
     }
 }
 
