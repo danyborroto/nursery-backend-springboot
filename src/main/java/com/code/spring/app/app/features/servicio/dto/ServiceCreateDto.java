@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public class ServiceCreateDto {
     @NotBlank(message = "El nombre no puede ser vacio")
     private String serviceName;

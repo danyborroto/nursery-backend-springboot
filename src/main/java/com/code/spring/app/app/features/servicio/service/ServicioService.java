@@ -45,7 +45,7 @@ public class ServicioService {
                 .orElseThrow(()->new ServiceNotFoundException(id));
         s.setServiceName(dto.getServiceName());
         s.setSelecteable(dto.getSelecteable());
-        return mapToServiceResponseDto(s);
+        return mapToServiceResponseDto(serviceRepository.save(s));
     }
 
     public String delete(Integer id){
